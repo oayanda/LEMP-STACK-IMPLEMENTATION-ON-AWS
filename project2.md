@@ -6,7 +6,10 @@ Login into your AWS account, Lunch Ec2 instance with your prefered settings. Cli
 
 `sudo apt update`
 
+![alt text](./images/01.png)
+
 `sudo apt install nginx`
+
 ![alt text](./images/1.png)
 
 2. Verify ngnix is successfully running.
@@ -52,3 +55,93 @@ Installation of the database - MySql.
 
 `sudo mysql -p`
 ![alt text](./images/9.png)
+
+**STEP THREE**
+
+PHP installation
+
+1. We would need to install wo packages.
+- a php processing process that at as a bridge between php interpreter and Nginx web server - php fastCGI
+
+- Php-MySQL - php module that allows communication between php and mysql database.
+
+`sudo apt install php-fpm php-mysql`
+![alt text](./images/10.png)
+
+
+**STEP FOUR**
+
+Configuring Nginx to use the Php processor.
+
+1. Create a web directory to host our application which is different from the default at /var/www/html. Additional, assign ownership of the current system user to the newly create directory.
+
+`sudo mkdir /var/www/projectLEMP`
+
+`sudo chown -R $USER:$USER /var/www/projectLEMP`
+
+![alt text](./images/11.png)
+
+2. Create a new configuration file for projectLEMP directory.
+
+`sudo nano /etc/nginx/sites-available/projectLEMP`
+
+![alt text](./images/12.png)
+
+![alt text](./images/111.png)
+
+3. Activate your configuration by linking to the config file from Nginx’s sites-enabled directory and test for error in the configuration file.
+
+`sudo ln -s /etc/nginx/sites-available/projectLEMP /etc/nginx/sites-enabled/`
+
+![alt text](./images/13.png)
+
+4. Test configuration for error
+
+`sudo nginx -t`
+
+![alt text](./images/133.png)
+
+4. Disable the default ngix host/directory *defualt* which listen on port 80 and reload ngnix.
+
+`sudo unlink /etc/nginx/sites-enabled/default`
+
+`sudo systemctl reload nginx`
+
+![alt text](./images/14.png)
+
+5. Create an index.html to test the custom directory *proectLEMP*.
+
+`sudo echo 'Hello LEMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectLEMP/index.html`
+
+![alt text](./images/15.png)
+
+- View in browser (using public ip address).
+
+![alt text](./images/16.png)
+
+- View in browser (using dns address).
+
+![alt text](./images/166.png)
+
+**STEP FIVE**
+
+Test to make sure Nginx can handle *.php* files.
+
+1. Create a info.php.
+
+`sudo nano /var/www/projectLEMp/info.php`
+
+![alt text](./images/17.png)
+![alt text](./images/177.png)
+
+2. Test in the browser with the vm dns or ip.
+
+![alt text](./images/18.png)
+
+2. Test in the browser with the vm dns or ip.
+
+`sudo rm /var/www/projectLEMp/info.php`
+
+![alt text](./images/19.png)
+
+
