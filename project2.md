@@ -212,4 +212,4 @@ save and close.
 
 9. View todo_list.php in the browser
 
-![alt text](./images/31.png)
+![alt text](./images/33.png)
