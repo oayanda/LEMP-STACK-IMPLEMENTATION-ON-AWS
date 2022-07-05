@@ -138,10 +138,78 @@ Test to make sure Nginx can handle *.php* files.
 
 ![alt text](./images/18.png)
 
-2. Test in the browser with the vm dns or ip.
+3. For security reasons, delete the info.php file. It can also be generated we needed.
 
 `sudo rm /var/www/projectLEMp/info.php`
 
 ![alt text](./images/19.png)
 
 
+**STEP SIX**
+
+Retrieving data from MySQL using Php.
+
+1. Login into mysql (Admin/root account)
+`sudo mysql -p`
+
+![alt text](./images/20.png)
+
+2. Create a database
+
+`create database project2db `
+
+![alt text](./images/21.png)
+
+3. Create user and password.
+
+`CREATE USER 'project2_user'@'%' IDENTIFIED WITH mysql_native_password BY 'PassWord.2';`
+
+![alt text](./images/22.png)
+
+- Grant full privileges and exit.
+
+![alt text](./images/23.png)
+
+4. Login with the new user credentials.
+
+`mysql -u example_user -p`
+
+![alt text](./images/24.png)
+
+5. View the databases in the MySQL database sever.
+
+`show databases;`
+
+![alt text](./images/25.png)
+
+6. Create a table
+
+`CREATE TABLE project2db.todo_list ( item_id INT AUTO_INCREMENT, content VARCHAR(255), PRIMARY KEY(item_id));`
+
+![alt text](./images/26.png)
+
+7. Insert some records into the table.
+
+`CREATE TABLE project2db.todo_list ( item_id INT AUTO_INCREMENT, content VARCHAR(255), PRIMARY KEY(item_id));`
+
+![alt text](./images/27.png)
+
+8. Confirm the data is saved into the table and exit.
+
+`SELECT * FROM project2db.todo_list;`
+
+![alt text](./images/28.png)
+
+8. Create a php page to fetch the data from the database.
+
+`nano /var/www/projectLEMP/todo_list.php`
+
+![alt text](./images/29.png)
+
+![alt text](./images/30.png)
+
+save and close.
+
+9. View todo_list.php in the browser
+
+![alt text](./images/31.png)
